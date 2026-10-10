@@ -6,17 +6,25 @@ export default function HowMade() {
     <section id="how">
       <div className="wrap">
         <p className="section-label">
-          ( how it was made )<span className="pen-note">the person behind the pixels</span>
+          ( how it was made )<span className="pen-note">the people behind the pixels</span>
         </p>
         <div className="about-grid">
           <div>
             <Reveal>
-              <figure className="about-photo">
-                <span className="tape a" aria-hidden />
-                <span className="tape b" aria-hidden />
-                <img src="/images/avatar-emma.avif" srcSet="/images/avatar-emma-640.avif 640w, /images/avatar-emma.avif 1200w" sizes="(max-width:860px) 60vw, 420px" alt="The locked Emma avatar used across every Personal Agent image" loading="lazy" />
-                <figcaption>emma. one face, every frame.</figcaption>
-              </figure>
+              <div className="about-photos">
+                <figure className="about-photo">
+                  <span className="tape a" aria-hidden />
+                  <span className="tape b" aria-hidden />
+                  <img src="/images/avatar-emma.avif" srcSet="/images/avatar-emma-640.avif 640w, /images/avatar-emma.avif 1200w" sizes="(max-width:860px) 44vw, 240px" alt="The locked Emma avatar used across every Personal Agent image" loading="lazy" />
+                  <figcaption>emma. one face, every frame.</figcaption>
+                </figure>
+                <figure className="about-photo jake">
+                  <span className="tape a" aria-hidden />
+                  <span className="tape b" aria-hidden />
+                  <img src="/images/avatar-jake.avif" srcSet="/images/avatar-jake-640.avif 640w, /images/avatar-jake.avif 1200w" sizes="(max-width:860px) 44vw, 240px" alt="The locked Jake avatar used across the Personal Agent images" loading="lazy" />
+                  <figcaption>jake. same rule, other face.</figcaption>
+                </figure>
+              </div>
             </Reveal>
             <div className="stat-row">
               <StatNote value={30} label="images shot" />
@@ -70,13 +78,7 @@ export default function HowMade() {
                 <span className="what">watch + perfume batches land at midnight, straight into the reel</span>
               </div>
             </div>
-            <div className="pad-note">
-              <span>
-                <b style={{ display: "block", fontWeight: 900 }}>the swap-in folder</b>
-                Gemini and ChatGPT shots drop into <code>/public/uploads</code> - one config line and they hang on the line.
-              </span>
-              <a className="cta" href="#showdown">back to the rounds ↑</a>
-            </div>
+            <a className="cta" style={{ marginTop: 26, display: "inline-block" }} href="#showdown">back to the rounds ↑</a>
           </Reveal>
         </div>
       </div>

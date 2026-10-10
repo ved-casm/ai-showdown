@@ -97,7 +97,7 @@ p{margin:0 0 1em}
 .polaroid .cap .arr{margin-left:auto}
 /* hang first row from the string: pin must cross the line, which sags
    (rel to grid top) at y=-40 (sides) and y=5 (center); pins span ~34px */
-.line-grid .polaroid:nth-child(1){margin-top:-88px}
+.line-grid .polaroid:nth-child(1){margin-top:-78px}
 .line-grid .polaroid:nth-child(2){margin-top:-44px}
 .line-grid .polaroid:nth-child(3){margin-top:-66px}
 
@@ -199,11 +199,11 @@ footer{margin-top:90px;padding-top:28px;padding-bottom:44px;border-top:1.5px das
   .polaroid .cap{font-size:.5625rem;padding:8px 1px 9px;gap:4px}
   .polaroid .cap .badge{font-size:.5625rem;padding:1px 6px}
   .polaroid .cap .arr{display:none}
-  .pin{width:8px;height:20px;top:-11px;border-width:1.5px}
-  .pin::after{left:1.5px;right:1.5px;top:8px;height:1.5px}
-  .line-grid .polaroid:nth-child(1){margin-top:-36px}
-  .line-grid .polaroid:nth-child(2){margin-top:-12px}
-  .line-grid .polaroid:nth-child(3){margin-top:-21px}
+  .pin{width:8px;height:26px;top:-13px;border-width:1.5px}
+  .pin::after{left:1.5px;right:1.5px;top:9px;height:1.5px}
+  .line-grid .polaroid:nth-child(1){margin-top:-33px}
+  .line-grid .polaroid:nth-child(2){margin-top:-22px}
+  .line-grid .polaroid:nth-child(3){margin-top:-30px}
 }
 @media (max-width:700px){.nav-links li:first-child{display:none}.nav-links{gap:14px}}
 @media (prefers-reduced-motion:reduce){
@@ -288,3 +288,9 @@ footer{margin-top:90px;padding-top:28px;padding-bottom:44px;border-top:1.5px das
 .round-pager a{border-bottom:2px solid var(--hl)}
 .plink{display:block}
 .plink:hover .polaroid{--r:0deg}
+
+/* jake joins emma in the how section */
+.about-photos{display:flex;gap:22px;align-items:flex-start}
+.about-photos .about-photo{flex:1;min-width:0}
+.about-photo.jake{rotate:2.5deg;margin-top:26px}
+@media (max-width:860px){.about-photos{gap:14px}.about-photo.jake{margin-top:18px}}

@@ -383,7 +383,6 @@ export const REEL: { src: string; caption: string }[] = [
   { src: "/images/watch-emma-2-cafe.avif", caption: "nordmark, cafe" },
   { src: "/images/watch-jake-3-street.avif", caption: "street check" },
   { src: "/images/watch-emma-1-gym.avif", caption: "gym mirror" },
-  { src: "/images/watch-jake-2-cafe.avif", caption: "morning coffee" },
 ];
 
 export const TICKER = ["Gemini", "ChatGPT", "Personal Agent"];
