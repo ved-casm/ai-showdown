@@ -1,12 +1,13 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 
 const LINKS = [
-  { href: "#home", label: "Home" },
-  { href: "#showdown", label: "Showdown" },
-  { href: "#video", label: "Video" },
-  { href: "#reel", label: "Reel" },
-  { href: "#how", label: "How" },
+  { hash: "#home", label: "Home" },
+  { hash: "#showdown", label: "Showdown" },
+  { hash: "#video", label: "Video" },
+  { hash: "#reel", label: "Reel" },
+  { hash: "#how", label: "How" },
 ];
 
 function Uline() {
@@ -21,6 +22,8 @@ export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [current, setCurrent] = useState("#home");
   const ref = useRef<HTMLElement>(null);
+  const pathname = usePathname();
+  const home = pathname === "/";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -30,7 +33,7 @@ export default function Nav() {
   }, []);
 
   useEffect(() => {
-    const sections = LINKS.map((l) => document.querySelector(l.href)).filter(Boolean) as Element[];
+    const sections = LINKS.map((l) => document.querySelector(l.hash)).filter(Boolean) as Element[];
     const io = new IntersectionObserver(
       (entries) => entries.forEach((e) => e.isIntersecting && setCurrent(`#${e.target.id}`)),
       { rootMargin: "-40% 0px -55% 0px" }
@@ -42,7 +45,7 @@ export default function Nav() {
   return (
     <header ref={ref} className={`site-nav${scrolled ? " scrolled" : ""}`}>
       <div className="wrap nav">
-        <a className="logo" href="#home">
+        <a className="logo" href={home ? "#home" : "/#home"}>
           <svg viewBox="0 0 58 46" aria-hidden>
             <path d="M34 4 C 14 2, 3 12, 4 24 C 5 38, 26 44, 42 40 C 56 36, 57 18, 46 9 C 38 3, 26 4, 20 7" stroke="#161616" strokeWidth="2.2" strokeLinecap="round" fill="none" />
           </svg>
@@ -50,8 +53,8 @@ export default function Nav() {
         </a>
         <ul className="nav-links">
           {LINKS.map((l) => (
-            <li key={l.href}>
-              <a href={l.href} className={current === l.href ? "current" : ""}>
+            <li key={l.hash}>
+              <a href={home ? l.hash : `/${l.hash}`} className={current === l.hash ? "current" : ""}>
                 {l.label}
                 <Uline />
               </a>
