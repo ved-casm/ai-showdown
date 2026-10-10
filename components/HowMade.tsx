@@ -78,7 +78,7 @@ export default function HowMade() {
                 <span className="what">watch + perfume batches land at midnight, straight into the reel</span>
               </div>
             </div>
-            <a className="cta" style={{ marginTop: 26, display: "inline-block" }} href="#showdown">back to the rounds ↑</a>
+            <a className="cta" style={{ marginTop: 26 }} href="#showdown">back to the rounds ↑</a>
           </Reveal>
         </div>
       </div>
