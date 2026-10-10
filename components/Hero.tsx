@@ -31,6 +31,7 @@ export default function Hero() {
           <div className="hero-ctas rise" {...r(0.52)}>
             <a className="cta primary" href="#showdown">see the showdown →</a>
             <a className="cta" href="#video">watch the video</a>
+            <a className="cta" href="/VedankGaur_GenerativeAIEngineer_Resume.pdf" download>download resume ↓</a>
           </div>
         </div>
         <figure className="about-photo" style={{ rotate: "1.6deg" }}>

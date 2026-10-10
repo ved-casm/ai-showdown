@@ -21,6 +21,7 @@ function Uline() {
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [current, setCurrent] = useState("#home");
+  const [open, setOpen] = useState(false);
   const ref = useRef<HTMLElement>(null);
   const pathname = usePathname();
   const home = pathname === "/";
@@ -43,7 +44,7 @@ export default function Nav() {
   }, []);
 
   return (
-    <header ref={ref} className={`site-nav${scrolled ? " scrolled" : ""}`}>
+    <header ref={ref} className={`site-nav${scrolled || open ? " scrolled" : ""}`}>
       <div className="wrap nav">
         <a className="logo" href={home ? "#home" : "/#home"}>
           <svg viewBox="0 0 58 46" aria-hidden>
@@ -60,6 +61,37 @@ export default function Nav() {
               </a>
             </li>
           ))}
+        </ul>
+        <a className="cta nav-cta" href="/VedankGaur_GenerativeAIEngineer_Resume.pdf" download>resume ↓</a>
+        <button
+          type="button"
+          className={`burger${open ? " open" : ""}`}
+          aria-label={open ? "close menu" : "open menu"}
+          aria-expanded={open}
+          onClick={() => setOpen(!open)}
+        >
+          <span /><span /><span />
+        </button>
+      </div>
+      <div className={`mobile-menu${open ? " open" : ""}`}>
+        <ul>
+          {LINKS.map((l) => (
+            <li key={l.hash}>
+              <a
+                href={home ? l.hash : `/${l.hash}`}
+                className={current === l.hash ? "current" : ""}
+                onClick={() => setOpen(false)}
+              >
+                {l.label}
+                <Uline />
+              </a>
+            </li>
+          ))}
+          <li>
+            <a className="cta" href="/VedankGaur_GenerativeAIEngineer_Resume.pdf" download onClick={() => setOpen(false)}>
+              download resume ↓
+            </a>
+          </li>
         </ul>
       </div>
     </header>
