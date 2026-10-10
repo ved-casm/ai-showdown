@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useRef } from "react";
-import { gsap } from "gsap";
 import { TICKER } from "@/data/products";
 
 function Set({ big }: { big?: boolean }) {
@@ -51,8 +50,12 @@ export default function Marquee() {
     w.addEventListener("mouseenter", () => (paused = true));
     w.addEventListener("mouseleave", () => (paused = false));
 
-    const tick = (_: number, deltaMS: number) => {
-      if (paused) return;
+    let raf = 0;
+    let last = performance.now();
+    const loop = (t: number) => {
+      const deltaMS = t - last;
+      last = t;
+      if (paused) { raf = requestAnimationFrame(loop); return; }
       boost *= 0.94;
       const speed = (60 + boost * 60) * (deltaMS / 1000);
       xF -= speed; // front moves left
@@ -61,10 +64,11 @@ export default function Marquee() {
       if (xB >= 0) xB -= setWB;
       f.style.transform = `translateX(${xF}px)`;
       b.style.transform = `translateX(${xB}px)`;
+      raf = requestAnimationFrame(loop);
     };
-    gsap.ticker.add(tick);
+    raf = requestAnimationFrame(loop);
     return () => {
-      gsap.ticker.remove(tick);
+      cancelAnimationFrame(raf);
       window.removeEventListener("scroll", onScroll);
     };
   }, []);
