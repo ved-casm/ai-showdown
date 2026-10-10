@@ -19,7 +19,7 @@ const robotoMono = Roboto_Mono({
 
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ??
-  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
+  "https://ai-showdown-vedankgaur11262002-gmailcoms-projects.vercel.app";
 
 const TITLE = "Vedank Gaur - Generative AI Designer | the photorealism showdown";
 const DESCRIPTION = "One prompt, three AIs, zero studio. Gemini vs ChatGPT vs a personal agent on photoreal UGC - by Vedank Gaur, Generative AI Designer, shortlisted for Puffy's AI Designer role.";
