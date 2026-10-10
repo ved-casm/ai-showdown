@@ -19,10 +19,10 @@ const robotoMono = Roboto_Mono({
 
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ??
-  "https://ai-showdown-vedankgaur11262002-gmailcoms-projects.vercel.app";
+  "https://ai-showdown-vg.vercel.app";
 
 const TITLE = "Vedank Gaur - Generative AI Designer | the photorealism showdown";
-const DESCRIPTION = "One prompt, three AIs, zero studio. Gemini vs ChatGPT vs a personal agent on photoreal UGC - by Vedank Gaur, Generative AI Designer, shortlisted for Puffy's AI Designer role.";
+const DESCRIPTION = "One prompt, three AIs, zero studio. Gemini vs ChatGPT vs a personal agent on photoreal UGC - by Vedank Gaur, Generative AI Designer.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -34,13 +34,13 @@ export const metadata: Metadata = {
     siteName: "the photorealism showdown",
     type: "website",
     locale: "en_IN",
-    images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "One prompt. Three AIs. - the photorealism showdown, Emma polaroid portraits on dotted paper" }],
+    images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "One prompt. Three AIs. - the photorealism showdown, Emma and Jake polaroid portraits on dotted paper" }],
   },
   twitter: {
     card: "summary_large_image",
     title: TITLE,
     description: DESCRIPTION,
-    images: [{ url: "/og.jpg", alt: "One prompt. Three AIs. - the photorealism showdown, Emma polaroid portraits on dotted paper" }],
+    images: [{ url: "/og.jpg", alt: "One prompt. Three AIs. - the photorealism showdown, Emma and Jake polaroid portraits on dotted paper" }],
   },
 };
 
