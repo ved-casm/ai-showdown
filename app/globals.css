@@ -24,7 +24,7 @@ p{margin:0 0 1em}
 
 /* ---------- nav ---------- */
 .site-nav{position:sticky;top:0;z-index:40;transition:background .25s,box-shadow .25s}
-.site-nav.scrolled{background:rgba(244,244,242,.94);box-shadow:0 1.5px 0 rgba(22,22,22,.14)}
+.site-nav.scrolled{background:var(--paper);box-shadow:0 1.5px 0 rgba(22,22,22,.14)}
 .nav{display:flex;align-items:center;justify-content:space-between;padding-block:14px}
 .logo{position:relative;font:500 1rem var(--font-mono);width:58px;height:46px;display:grid;place-items:center}
 .logo svg{position:absolute;inset:0;width:100%;height:100%;transition:transform .4s var(--ease-out)}
@@ -264,8 +264,8 @@ footer{margin-top:90px;padding-top:28px;padding-bottom:44px;border-top:1.5px das
 .tuner-strip{display:contents}
 @media (max-width:1279px){
   section[id],.round{scroll-margin-top:150px}
-  .tuner{left:0;right:0;top:66px;translate:none;flex-direction:column;align-items:center;gap:2px;
-    background:rgba(244,244,242,.96);border-bottom:1.5px solid rgba(22,22,22,.18);padding:6px 12px 10px;z-index:35}
+  .tuner{left:0;right:0;top:66px;translate:none;flex-direction:column;align-items:center;gap:6px;
+    background:var(--paper);border-bottom:1.5px solid rgba(22,22,22,.18);padding:12px 12px 14px;z-index:35}
   .tuner-current{display:block;font:700 .75rem var(--font-mono);text-transform:uppercase;letter-spacing:.14em;
     background:var(--hl);border:1.5px solid var(--ink);border-radius:99px;padding:2px 12px;box-shadow:1.5px 1.5px 0 var(--ink)}
   .tuner-strip{display:flex;flex-direction:row;align-items:flex-end;justify-content:center}
