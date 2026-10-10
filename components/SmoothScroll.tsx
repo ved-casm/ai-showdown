@@ -1,20 +1,34 @@
 "use client";
 import { useEffect } from "react";
-import Lenis from "lenis";
 
 export default function SmoothScroll({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const lenis = new Lenis({ lerp: 0.1, smoothWheel: true });
+    let lenis: { raf: (t: number) => void; destroy: () => void } | null = null;
     let raf = 0;
-    const loop = (t: number) => {
-      lenis.raf(t);
+    let cancelled = false;
+
+    const start = async () => {
+      const { default: Lenis } = await import("lenis");
+      if (cancelled) return;
+      lenis = new Lenis({ lerp: 0.1, smoothWheel: true });
+      const loop = (t: number) => {
+        lenis?.raf(t);
+        raf = requestAnimationFrame(loop);
+      };
       raf = requestAnimationFrame(loop);
     };
-    raf = requestAnimationFrame(loop);
+
+    const idle = window.requestIdleCallback
+      ? window.requestIdleCallback(start, { timeout: 800 })
+      : window.setTimeout(start, 300);
+
     return () => {
+      cancelled = true;
+      if (window.cancelIdleCallback) window.cancelIdleCallback(idle as number);
+      else clearTimeout(idle as number);
       cancelAnimationFrame(raf);
-      lenis.destroy();
+      lenis?.destroy();
     };
   }, []);
   return <>{children}</>;
