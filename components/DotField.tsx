@@ -155,6 +155,8 @@ export default function DotField() {
     let W = 0, H = 0, dpr = 1;
     let radius = RADIUS;
     let cells: { x: number; y: number; g: number; vis: number }[] = [];
+    // content blocks the icons must never slide behind - they stay around it
+    let excl: { x0: number; y0: number; x1: number; y1: number }[] = [];
 
     const rebuild = () => {
       const r = section.getBoundingClientRect();
@@ -170,6 +172,13 @@ export default function DotField() {
           const h = Math.abs(Math.sin(x * 12.9898 + y * 78.233) * 43758.5453) % 1;
           cells.push({ x, y, g: Math.floor(h * GLYPHS.length), vis: 0 });
         }
+      const m = Math.max(28, Math.min(56, W * 0.045)); // breathing margin around content
+      excl = [];
+      // the actual content blocks inside the hero - text column and photo - not the full-width wrap
+      for (const b of section.querySelectorAll(".wrap.hero > div, .wrap.hero figure")) {
+        const q = b.getBoundingClientRect();
+        excl.push({ x0: q.left - r.left - m, y0: q.top - r.top - m, x1: q.right - r.left + m, y1: q.bottom - r.top + m });
+      }
     };
     rebuild();
     const ro = new ResizeObserver(rebuild);
@@ -189,6 +198,9 @@ export default function DotField() {
         if (target) {
           const d = Math.hypot(c.x - target.x, c.y - target.y);
           goal = Math.max(0, 1 - d / radius);
+        }
+        for (const z of excl) {
+          if (c.x >= z.x0 && c.x <= z.x1 && c.y >= z.y0 && c.y <= z.y1) { goal = 0; break; }
         }
         c.vis += (goal - c.vis) * 0.22;
         if (c.vis < 0.004) c.vis = 0;
