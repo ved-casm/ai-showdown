@@ -1,0 +1,22 @@
+.cf-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(28px,4vw,56px);align-items:start;margin-top:clamp(36px,5vw,56px)}
+.cf-paper{position:relative;background:var(--card);border:2px solid var(--ink);border-radius:3px;padding:clamp(22px,3.4vw,40px);box-shadow:6px 6px 0 var(--ink);rotate:-.5deg}
+.cf-form{display:flex;flex-direction:column;gap:20px}
+.cf-field{display:flex;flex-direction:column;gap:8px}
+.cf-field span{font:500 .8125rem var(--font-mono);color:var(--pen)}
+.cf-field input,.cf-field textarea{width:100%;font:400 1rem/1.5 var(--font-text);color:var(--ink);background:var(--paper);border:2px solid var(--ink);border-radius:3px;padding:13px 14px;outline:none;resize:vertical;transition:box-shadow .15s var(--ease-out),transform .15s var(--ease-out),background .15s}
+.cf-field textarea{min-height:140px}
+.cf-field input::placeholder,.cf-field textarea::placeholder{color:#8a8a86;font-family:var(--font-mono);font-size:.9rem}
+.cf-field input:focus,.cf-field textarea:focus{background:#fff;box-shadow:4px 4px 0 var(--pen);transform:translate(-2px,-2px)}
+.cf-hp{position:absolute!important;left:-9999px;width:1px;height:1px;opacity:0}
+.cf-submit{align-self:flex-start}
+.cf-submit:disabled{opacity:.6;cursor:progress}
+.cf-error{margin:0;font:500 .875rem var(--font-mono);color:var(--margin-red)}
+.cf-done{display:flex;flex-direction:column;align-items:flex-start;gap:6px}
+.cf-done p{max-width:44ch}
+.cf-done-title{font:900 clamp(2rem,4vw,3rem)/1 var(--font-text);letter-spacing:-.045em;margin-bottom:8px!important}
+.cf-sticky{position:relative;background:var(--sticky-yellow);border:1.5px solid var(--ink);border-radius:3px;padding:clamp(22px,3vw,34px);rotate:1.8deg;box-shadow:5px 5px 0 rgba(22,22,22,.2);display:flex;flex-direction:column;align-items:flex-start;gap:6px}
+.cf-sticky-label{font:400 .9375rem var(--font-mono);color:var(--muted);margin:0}
+.cf-sticky-title{font:900 clamp(2rem,3.4vw,3rem)/1 var(--font-text);letter-spacing:-.045em;margin:0}
+.cf-sticky-copy{font:500 .9375rem/1.5 var(--font-mono);margin:6px 0 16px;max-width:32ch}
+@media (max-width:860px){.cf-grid{grid-template-columns:1fr}.cf-paper{rotate:0deg}.cf-sticky{rotate:1deg}}
+@media (max-width:480px){.cf-submit,.cf-sticky .cta,.cf-done .cta{width:100%;justify-content:center}}
