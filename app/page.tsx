@@ -7,6 +7,7 @@ import AvatarShowcase from "@/components/AvatarShowcase";
 import VideoShowcase from "@/components/VideoShowcase";
 import HowMade from "@/components/HowMade";
 import Footer from "@/components/Footer";
+import ContactForm from "@/components/ContactForm";
 import Reveal from "@/components/Reveal";
 import Clothesline from "@/components/Clothesline";
 import Polaroid from "@/components/Polaroid";
@@ -86,6 +87,7 @@ export default function Home() {
       </section>
 
       <HowMade />
+      <ContactForm />
       <Footer />
     </main>
   );
