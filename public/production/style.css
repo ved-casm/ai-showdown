@@ -1,0 +1,31 @@
+:root{--paper:#f6f1e4;--ink:#1c1a17;--yel:#ffd84d;--line:#1c1a17;--mut:#6b655a}
+*{box-sizing:border-box;margin:0}
+body{font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);background:var(--paper) radial-gradient(#d9d1bd 1px,transparent 1px) 0 0/18px 18px}
+a{color:inherit}
+.wrap{max-width:1100px;margin:0 auto;padding:0 16px}
+nav{position:sticky;top:0;z-index:5;background:var(--paper);border-bottom:2px solid var(--line)}
+nav .wrap{display:flex;gap:14px;align-items:center;overflow-x:auto;padding:10px 16px;white-space:nowrap;font-size:13px}
+nav b{font-size:15px}
+section{padding:36px 0;border-bottom:2px dashed #c9bfa5}
+.tag{display:inline-block;background:var(--yel);border:2px solid var(--line);padding:2px 8px;font:700 11px/1.4 ui-monospace,monospace;text-transform:uppercase;box-shadow:3px 3px 0 var(--line)}
+h1{font-size:clamp(30px,6vw,56px);line-height:1.05;margin:12px 0}
+h2{font-size:clamp(22px,4vw,32px);margin:8px 0 6px}
+p.lead{color:var(--mut);max-width:62ch;margin-bottom:14px}
+.card{background:#fff;border:2px solid var(--line);box-shadow:5px 5px 0 var(--line);padding:12px}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+img{max-width:100%;display:block;border:2px solid var(--line)}
+.cap{font:12px/1.4 ui-monospace,monospace;color:var(--mut);margin-top:6px}
+.btn{display:inline-block;background:var(--yel);border:2px solid var(--line);padding:9px 14px;font-weight:700;text-decoration:none;box-shadow:3px 3px 0 var(--line);margin:4px 6px 4px 0}
+.how{font:12px/1.5 ui-monospace,monospace;background:#fffbe3;border:2px dashed var(--line);padding:8px;margin-top:10px}
+table{border-collapse:collapse;width:100%;font-size:14px;background:#fff}
+td,th{border:2px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+th{background:var(--yel)}
+.scroll{overflow-x:auto}
+.ok{background:#d6f0d9}.fail{background:#f8d0d0}.wait{background:#fff1c2}
+.strip{display:flex;gap:12px;overflow-x:auto;padding-bottom:8px}.strip>*{flex:0 0 auto}
+.cmp{position:relative;user-select:none}
+.cmp img.top{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;clip-path:inset(0 50% 0 0)}
+.cmp input{width:100%;margin-top:6px}
+footer{padding:28px 0;font-size:13px;color:var(--mut)}

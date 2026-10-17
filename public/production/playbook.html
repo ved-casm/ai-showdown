@@ -1,0 +1,13 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Playbook - AI product imagery (concept)</title><link rel="stylesheet" href="style.css"></head><body><nav><div class="wrap"><b>Playbook</b><span class="tag">concept / spec work</span><a href="index.html#playbook">back to production</a></div></nav><main class="wrap" style="padding:20px 16px"><h1 style="font-size:34px">Product-in-scene workflow</h1><p class="lead">Written from the TESSEL exercise. Another designer should reach the same kind of result by following it. This is a first version; it improves after someone else tries it.</p>
+<table><tr><th>#</th><th>Step</th><th>Do this</th><th>Time (rough estimate)</th></tr>
+<tr><td>1</td><td>Brief</td><td>Write objective, audience, placements, must-hold details.</td><td>5 min</td></tr>
+<tr><td>2</td><td>Source</td><td>Pick one clean product photo you have the licence for. Note the licence and URL.</td><td>5 min</td></tr>
+<tr><td>3</td><td>Brand</td><td>Add the label or mark on the source image first. Check it at 100% zoom.</td><td>1 min</td></tr>
+<tr><td>4</td><td>Generate</td><td>Use the source as the reference. Prompt: "place this exact [product] ... keep [pattern] and [label]". Change one thing per scene.</td><td>1 min per scene</td></tr>
+<tr><td>5</td><td>Check</td><td>Compare to the source: shape, pattern, label, colour. Mark pass / close / fail.</td><td>3 min</td></tr>
+<tr><td>6</td><td>Fix</td><td>Inpaint anything wrong (stray text, label). Outpaint if the placement needs more room.</td><td>2 min each</td></tr>
+<tr><td>7</td><td>Repeat test</td><td>Run the same prompt 4 more times. Note how many hold. If labels fail, add them as a second reference or finish by hand.</td><td>2 min</td></tr>
+<tr><td>8</td><td>Crop</td><td>Cut 16:9, 4:5, 1:1, 9:16 around the focal point. Check text legibility at 120px.</td><td>5 min</td></tr>
+<tr><td>9</td><td>Hand off</td><td>Name files, export to the spec table, note tool and prompt per file.</td><td>5 min</td></tr></table>
+<h2 style="margin-top:18px">QA checklist</h2><ul style="margin-left:18px"><li>Product shape, pattern and label match the source</li><li>No real brands, readable third-party text or logos in the scene</li><li>Mobile crop keeps the focal point</li><li>Headline still readable at thumbnail size</li><li>Concept / spec label present, licence noted</li></ul>
+<h2 style="margin-top:18px">Second-person test</h2><p class="lead">Not done yet. A second designer follows this page and I record where they got stuck and what I changed.</p></main></body></html>
