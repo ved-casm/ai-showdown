@@ -51,6 +51,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${roboto.variable} ${robotoMono.variable}`}>
       <body>
         <SmoothScroll>{children}</SmoothScroll>
+        <nav aria-label="Version switch" style={{ position: "fixed", right: 18, bottom: 18, zIndex: 9999, display: "flex", gap: 10 }}>
+          <a href="/" aria-current="page" style={{ width: 46, height: 46, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, fontWeight: 700, textDecoration: "none", color: "#1c1a17", border: "2px solid #1c1a17", background: "#ffd84d", boxShadow: "3px 3px 0 #1c1a17" }}>Old</a>
+          <a href="/production" style={{ width: 46, height: 46, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, fontWeight: 700, textDecoration: "none", color: "#1c1a17", border: "2px solid #1c1a17", background: "#f6f1e4" }}>New</a>
+        </nav>
       </body>
     </html>
   );
