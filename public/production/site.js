@@ -75,3 +75,31 @@ if(window.matchMedia('(hover: none)').matches){
 }
 paint();
 })();
+
+/* contact form (ported from the old version): posts to the same contact-relay endpoint */
+document.querySelectorAll('.cf-form').forEach(form=>{
+const paper=form.closest('.cf-paper');
+const done=paper.querySelector('.cf-done');
+const err=form.querySelector('.cf-error');
+const submit=form.querySelector('.cf-submit');
+form.addEventListener('submit',async e=>{
+ e.preventDefault();
+ if(submit.disabled)return;
+ submit.disabled=true;submit.textContent='sending...';err.hidden=true;
+ try{
+  const data=new FormData(form);
+  const res=await fetch('https://ved-portfolio-nine.vercel.app/api/contact-relay',{
+   method:'POST',headers:{'Content-Type':'application/json'},
+   body:JSON.stringify({site:'showdown',name:data.get('name'),email:data.get('email'),message:data.get('message'),company:data.get('company')})
+  });
+  const out=await res.json().catch(()=>({}));
+  if(!res.ok||!out.ok)throw new Error(out.error||"Couldn't send right now.");
+  form.reset();form.hidden=true;done.hidden=false;
+ }catch(ex){
+  err.textContent=ex instanceof Error?ex.message:"Couldn't send right now.";err.hidden=false;
+ }finally{
+  submit.disabled=false;submit.textContent='send message ↗';
+ }
+});
+done.querySelector('[data-cf-again]').addEventListener('click',()=>{done.hidden=true;form.hidden=false;});
+});
