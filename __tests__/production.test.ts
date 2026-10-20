@@ -15,3 +15,18 @@ describe('production design system',()=>{
  });
  test('PDP checkout is explicitly a non-payment demo',()=>{pages.filter(f=>f.endsWith('-pdp.html')).forEach(file=>{const html=fs.readFileSync(path.join(root,file),'utf8');expect(html).toContain('demo-cart');expect(html).toContain('No orders or payments.');});});
 });
+
+describe('tool examples',()=>{
+ test('all five submitted tool frames are linked without claiming measured benchmarks',()=>{
+  const html=fs.readFileSync(path.join(root,'index.html'),'utf8');
+  const doc=new DOMParser().parseFromString(html,'text/html');
+  const section=doc.querySelector('#tools')!;
+  expect(section.querySelectorAll('img')).toHaveLength(5);
+  ['chatgpt','gemini','midjourney','flux','firefly'].forEach(tool=>{
+   expect(section.querySelector(`a[href="img/tool-${tool}.jpg"] img`)).not.toBeNull();
+  });
+  expect(section.textContent).not.toContain('pending');
+  expect(section.textContent).toContain('not benchmark results');
+  expect(doc.querySelector('#photoshop')!.textContent).toContain('coming');
+ });
+});

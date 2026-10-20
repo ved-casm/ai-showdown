@@ -49,3 +49,25 @@ footer a,p a:not(.btn),td a{text-decoration:underline;text-underline-offset:3px}
 .ver-switch a{box-shadow:3px 3px 0 #161616}
 /* compact no-image placeholder (was a big empty gray box) */
 .noimg{min-height:0;align-items:flex-start;justify-content:flex-start;text-align:left}
+
+/* Tool examples: full frames, no crop; readable stacked rows on small screens. */
+#tools .tool-example img{display:block;width:160px;height:200px;max-width:none;object-fit:contain;background:#f4f4f2}
+#tools .tool-example a{display:inline-block;font:11px/1.6 var(--mono)}
+#tools .tool-example span{display:block;margin-top:6px}
+#tools .tool-brief{margin:20px 0;border:1.5px dashed var(--ink);padding:14px 16px;background:#fff}
+#tools .tool-brief summary{cursor:pointer;font:13px/1.6 var(--mono)}
+#tools .tool-brief p{margin:12px 0 0;font-size:14px}
+@media(max-width:760px){
+#tools .scroll{overflow:visible}
+#tools .scroll:has(table)::before{display:none}
+#tools table,#tools tbody,#tools tr,#tools td{display:block;width:100%;min-width:0}
+#tools table{background:transparent}
+#tools tr:first-child{display:none}
+#tools tr{border:1.5px solid var(--ink);background:white;margin:0 0 20px}
+#tools td{border:0;padding:10px 14px;box-sizing:border-box}
+#tools td:first-child{font-weight:700;border-bottom:1.5px solid var(--ink);background:#fff4ba}
+#tools td:nth-child(2)::before{content:'Possible use: ';font-weight:700}
+#tools td:nth-child(3)::before{content:'What to check: ';font-weight:700}
+#tools .tool-example img{width:100%;height:auto;max-width:100%}
+#tools .tool-example a{display:block}
+}
