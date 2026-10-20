@@ -1,24 +1,22 @@
-# AI Showdown
+# AI product imagery - production work
 
-One prompt, three AIs - a scrapbook-style showdown of Gemini vs ChatGPT vs a Personal Agent on photorealistic product imagery.
+Concept / spec work by Vedank Gaur: three fictional brands (TESSEL pillow, ORRIN No. 7 perfume, SOMNA mattress) taken from brief to fidelity - reference to rollout, ads, crops, PDP and landing-page concepts.
 
-Live: https://ai-showdown-vg.vercel.app/
+Live: https://ai-showdown-vg.vercel.app/production
 
 ## What is in it
 
-- **The cast** - two characters, Emma and Jake. Each has an avatar-generation prompt and the avatars made by all three models, side by side.
-- **Product rounds** - watch, headphones, honey, pillow and perfume. Each round shows the exact prompt with the three models' outputs next to it. Rounds with people use Emma and Jake, and the perfume round is product-only.
-- **Scrapbook design** - dotted paper, washi tape, sticky notes, polaroids on a string, a marquee and a radio-style tuner nav for jumping between categories.
-- **Contact form** - sends a themed thank-you email to the visitor and a notification to the site owner.
-- **/production** - static concept pages for three fictional brands, with an Old/New switch to move between the two versions of the site.
+- Static concept pages in `public/production` (shared `style.css` + `site.js`, local fonts and images).
+- A minimal Next.js shell that redirects `/` to `/production` and serves robots.txt and the sitemap.
+- Hero dot-field: the dotted paper morphs into AI monograms near the cursor, carried over from the earlier version of the site.
 
-## Content
+## History
 
-All rounds, prompts and image paths live in `data/products.ts`. Images are AVIF files in `public/images` (our outputs) and `public/uploads` (Gemini and ChatGPT outputs). An empty path renders a "waiting for upload" placeholder.
+The earlier "AI showdown" version of the site (Gemini vs ChatGPT vs Personal Agent) is preserved on the `old-version` branch.
 
 ## Stack
 
-Next.js (App Router), React 19, TypeScript, Lenis for smooth scrolling, sharp for image processing. Tests use Jest and React Testing Library.
+Next.js (App Router) shell, static HTML/CSS/JS for the site itself. Tests use Jest.
 
 ## Run locally
 
@@ -27,9 +25,4 @@ npm install
 npm run dev
 ```
 
-Open http://localhost:3000.
-
-```bash
-npm test         # Jest
-npm run build    # production build
-```
+Open http://localhost:3000/production/index.html.
