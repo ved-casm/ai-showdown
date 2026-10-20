@@ -103,3 +103,71 @@ form.addEventListener('submit',async e=>{
 });
 done.querySelector('[data-cf-again]').addEventListener('click',()=>{done.hidden=true;form.hidden=false;});
 });
+
+/* image lightbox: photos open full size in-page; image links no longer open a new tab */
+(()=>{
+const isImgHref=href=>/\.(jpe?g|png|webp|avif)$/i.test(href||'');
+const lb=document.createElement('div');
+lb.className='lb';lb.hidden=true;
+lb.setAttribute('role','dialog');lb.setAttribute('aria-modal','true');lb.setAttribute('aria-label','Full-size image view');
+lb.innerHTML='<button class="lb-close" type="button" aria-label="Close image view">×</button><figure><img alt="" loading="eager"/><figcaption class="lb-cap"></figcaption></figure>';
+document.body.appendChild(lb);
+const lbImg=lb.querySelector('img'),lbCap=lb.querySelector('.lb-cap'),lbBtn=lb.querySelector('.lb-close');
+let lastFocus=null;
+let lockedY=0;
+const open=(src,alt,trigger)=>{
+ lastFocus=trigger||null;
+ lbImg.src=src;lbImg.alt=alt||'';lbCap.textContent=alt||'';
+ lockedY=window.scrollY;
+ lb.hidden=false;
+ document.documentElement.classList.add('lb-open');
+ document.body.style.position='fixed';document.body.style.top=`-${lockedY}px`;
+ document.body.style.left='0';document.body.style.right='0';
+ lbBtn.focus();
+};
+const close=()=>{
+ if(lb.hidden)return;
+ lb.hidden=true;lbImg.removeAttribute('src');
+ document.documentElement.classList.remove('lb-open');
+ document.body.style.position='';document.body.style.top='';document.body.style.left='';document.body.style.right='';
+ window.scrollTo({top:lockedY,behavior:'instant'});
+ if(lastFocus&&lastFocus.focus)lastFocus.focus({preventScroll:true});
+};
+lb.addEventListener('click',e=>{if(e.target===lb||e.target===lbBtn)close();});
+document.addEventListener('keydown',e=>{
+ if(lb.hidden)return;
+ if(e.key==='Escape')close();
+ if(e.key==='Tab'){e.preventDefault();lbBtn.focus();}
+});
+const triggerFor=img=>{
+ const a=img.closest('a');
+ if(a){const href=a.getAttribute('href');return isImgHref(href)?{src:href,el:a}:null;}
+ return{src:img.getAttribute('src')||img.currentSrc,el:img};
+};
+const activate=t=>{
+ if(!t)return;
+ const img=t.el.tagName==='IMG'?t.el:t.el.querySelector('img');
+ open(t.src,img?img.getAttribute('alt'):'',t.el);
+};
+const eligible=img=>{
+ if(lb.contains(img))return false;
+ if(img.closest('.site-nav')||img.closest('.mobile-menu'))return false;
+ return triggerFor(img)!==null;
+};
+document.addEventListener('click',e=>{
+ const imageLink=e.target.closest('a.lb-trigger');
+ const img=imageLink?imageLink.querySelector('img'):e.target.closest('img');
+ if(!img||!eligible(img))return;
+ e.preventDefault();
+ activate(triggerFor(img));
+});
+document.querySelectorAll('img').forEach(img=>{
+ if(!eligible(img))return;
+ const t=triggerFor(img);
+ t.el.classList.add('lb-trigger');
+ if(t.el.tagName==='IMG'){
+  t.el.tabIndex=0;t.el.setAttribute('role','button');
+  t.el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();activate(triggerFor(t.el));}});
+ }
+});
+})();

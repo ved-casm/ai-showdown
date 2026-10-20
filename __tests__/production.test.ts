@@ -3,7 +3,7 @@ import path from 'path';
 const root=path.join(process.cwd(),'public','production');
 const pages=fs.readdirSync(root).filter(f=>f.endsWith('.html'));
 describe('production design system',()=>{
- test('all 11 pages use the shared stylesheet and navigation script',()=>{
+ test('all 10 pages use the shared stylesheet and navigation script',()=>{
   expect(pages).toHaveLength(10);
   pages.forEach(file=>{const html=fs.readFileSync(path.join(root,file),'utf8');expect(html).toContain('href="style.css"');expect(html).toContain('src="site.js"');expect(html).toContain('class="site-nav"');expect(html).toContain('class="burger"');expect(html).toMatch(/concept|spec work/i);expect(html).not.toContain('—');});
  });
@@ -17,15 +17,32 @@ describe('production design system',()=>{
 });
 
 describe('tool examples',()=>{
- test('all five submitted tool frames are linked without claiming measured benchmarks',()=>{
+ test('all six submitted tool frames are linked without claiming measured benchmarks',()=>{
   const html=fs.readFileSync(path.join(root,'index.html'),'utf8');
   const doc=new DOMParser().parseFromString(html,'text/html');
   const section=doc.querySelector('#tools')!;
-  expect(section.querySelectorAll('img')).toHaveLength(5);
-  ['chatgpt','gemini','midjourney','flux','firefly'].forEach(tool=>{
+  expect(section.querySelectorAll('img')).toHaveLength(6);
+  ['chatgpt','gemini','midjourney','flux','firefly','personal-agent'].forEach(tool=>{
    expect(section.querySelector(`a[href="img/tool-${tool}.jpg"] img`)).not.toBeNull();
   });
   expect(section.textContent).not.toContain('pending');
   expect(section.textContent).toContain('not benchmark results');
+ });
+});
+
+describe('image lightbox',()=>{
+ test('image links open in the in-page lightbox, never a new tab',()=>{
+  pages.forEach(file=>{
+   const doc=new DOMParser().parseFromString(fs.readFileSync(path.join(root,file),'utf8'),'text/html');
+   doc.querySelectorAll('a[target="_blank"]').forEach(a=>{
+    expect(a.getAttribute('href')).not.toMatch(/\.(jpe?g|png|webp|avif)$/i);
+   });
+  });
+  const js=fs.readFileSync(path.join(root,'site.js'),'utf8');
+  expect(js).toContain('lb-close');
+  expect(js).toContain("Escape");
+  expect(js).toContain('lb-open');
+  const css=fs.readFileSync(path.join(root,'style.css'),'utf8');
+  expect(css).toContain('.lb{');
  });
 });
