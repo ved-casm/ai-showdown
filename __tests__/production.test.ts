@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-const root=path.join(process.cwd(),'public','production');
+const root=path.join(process.cwd(),'public');
 const pages=fs.readdirSync(root).filter(f=>f.endsWith('.html'));
 describe('production design system',()=>{
  test('all 10 pages use the shared stylesheet and navigation script',()=>{
